@@ -419,7 +419,6 @@ body.locked > *:not(#passwordGate){visibility:hidden;pointer-events:none;user-se
 // === PASSWORD GATE ===
 // 아래 비밀번호를 원하는 값으로 변경하세요.
 const SITE_PASSWORD = '판매7';
-const SESSION_KEY = 'forestfit_workroom_unlocked';
 const passwordGate = document.getElementById('passwordGate');
 const passwordInput = document.getElementById('sitePassword');
 const passwordSubmit = document.getElementById('passwordSubmit');
@@ -429,7 +428,6 @@ const eyeClosed = document.getElementById('eyeClosed');
 const passwordError = document.getElementById('passwordError');
 
 function unlockSite(){
-  sessionStorage.setItem(SESSION_KEY,'1');
   document.body.classList.remove('locked');
   passwordGate.classList.add('hidden');
 }
@@ -444,12 +442,7 @@ function checkPassword(){
   }
 }
 
-if(sessionStorage.getItem(SESSION_KEY)==='1'){
-  document.body.classList.remove('locked');
-  passwordGate.classList.add('hidden');
-}else{
-  setTimeout(()=>passwordInput.focus(),0);
-}
+setTimeout(()=>passwordInput.focus(),0);
 
 passwordSubmit.addEventListener('click',checkPassword);
 passwordToggle.addEventListener('click',()=>{
